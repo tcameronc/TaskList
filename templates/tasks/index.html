@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IndexPage</title>
+    </head>
+<body>
+
+
+    <a href = "{% url 'index' %}"><h1>TODO-LIST</h1></a>
+
+    <form action ="{%  url 'search'%}" method="get">
+        <div class="input-group">
+    <input type="text" class="form-control" name="search-term" placeholder="Search Tasks" aria-label="Task"
+           aria-describedby="button-addon2">
+    <button class=" btn btn-primary fas fa-search" type="submit" id="button-addon2"> Search</button>
+    </div>
+    </form>
+        {% for task in tasks %}
+
+    <ol>
+            <div class = "p-2">
+            <div class = "row taskCard">
+                <div class = "col-md-10 ">
+                    <li> {{ task.task }} <br>
+                        <span class="tiny">
+                            {{ task.created_at }} <br>
+                            {{ task.modified_at }}
+                        </span>
+                </div>
+                    <div class = "col-md-2 my-auto">
+                                <a href = "{% url 'update' task.id %}">
+                                        <span class = "btn btn-outline-primary" ><i class="fa-regular fa-pen-to-square"></i></span>
+                                </a>
+
+                                <a href = "{%  url 'delete' task.id %}">
+                                    <span class = "btn btn-outline-danger" ><i class="fa-solid fa-xmark"></i></span>
+                                </a>
+
+                    </div>
+                </div>
+</div>
+    </ol>
+            {%  endfor %}
+
+    <div class ="container">
+    <div class = "row mb-4">
+        <div class = "col-6" >
+            <a class =" btn btn-success " href="{%url 'add' %}" role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Add a new task</a>
+        </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UpdatePage</title>
+</head>
+<body>
+{% extends "tasks/base.html" %}
+{%  load static %}
+{% block body %}
+
+    <div class ="addTopBar border">Update Task</div>
+
+    <div class ="col-12 addCard">
+
+    <form action="{%  url 'update' task.id %}" method="post">
+        {% csrf_token %}
+        Task name: <br>
+        <input type="text" placeholder="{{ task.task }}" name="task" class = "form-control addInput"> <br>
+        <button type="submit" value="Update" class=" btn btn-primary"><i class="fa-solid fa-pen-to-square"> </i> Update</button>
+    </form>
+</div>
+    <div class = "col-3 btn btn-warning"><a href="{% url 'index' %}"><i class="fa-solid fa-arrow-left"></i><span class="tiny"> Go Back</span></a></div>
+
+
+{#    <a href = "{% url 'index' %}"><h1>Update Task</h1></a>#}
+{##}
+{#<form action="{%  url 'update' task.id %}" method="post">#}
+{#        {% csrf_token %}#}
+{#        <input type="text" placeholder = "{{ task.task }}" name="task">#}
+{#        <input type="submit" value="Update">#}
+{#    </form>#}
+{##}
+{#   <a href="{% url 'index' %}">Go Back</a>#}
+
+
+{% endblock %}
+</body>
+</html>
